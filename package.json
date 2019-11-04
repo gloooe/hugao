@@ -9,7 +9,10 @@
   "dependencies": {
     "@mdi/font": "^3.6.95",
     "axios": "^0.19.0",
+<<<<<<< HEAD
     "nprogress": "^0.2.0",
+=======
+>>>>>>> c4e3d6ad02c4401146c12e831d6cdf2d5e64de9f
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
