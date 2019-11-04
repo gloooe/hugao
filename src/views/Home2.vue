@@ -157,12 +157,11 @@
         </v-tab-item>
       </v-tabs-items>
     </v-content>
-
   </v-app>
 </template>
 
 <script>
-import { mapState,mapGetters} from 'vuex'
+import { mapState, mapGetters } from "vuex";
 export default {
   props: {
     source: String
@@ -172,14 +171,14 @@ export default {
     searchtextfield: false,
     drawer: null,
     visibility: false,
-language: "中文",
+    language: "English",
     items: [
       { icon: "mdi-contacts", text: "Contacts", url: "/home2/project" },
       { icon: "mdi-history", text: "Frequently contacted", url: "/home2/tab" },
-      { icon: "mdi-content_copy", text: "Duplicates", url: "/home2/cards" },
-      { icon: "mdi-content_copy", text: "2col", url: "/home2/2col" },
-      { icon: "mdi-content_copy", text: "new", url: "/home2/new" },
-      { icon: "mdi-content_copy", text: "totop", url: "/home2/totop" },
+      { icon: "mdi-content-copy", text: "Duplicates", url: "/home2/cards" },
+      { icon: "mdi-content-copy", text: "2col", url: "/home2/2col" },
+      { icon: "mdi-content-copy", text: "new", url: "/home2/new" },
+      { icon: "mdi-content-copy", text: "totop", url: "/home2/totop" },
       {
         icon: "mdi-contacts",
         "mdi-contacts": "mdi-contacts",
@@ -187,15 +186,11 @@ language: "中文",
         model: true,
         children: [{ icon: "mdi-contacts", text: "Create label" }]
       }
-    ],
-    language: "中文",
-    // languages: ['zh-CN','en-US'],
-    //languages: ["中文", "English"],
-    //colors: ["blue", "green", "purple", "red"]
+    ]
   }),
   computed: {
-    ...mapState(['languages', 'colors','menu', 'pageTitle'])
-   ...mapGetters(['changeRedDark', 'switchcolor(color)','switchlang(to)'])
+    ...mapState(["languages", "colors", "menu", "pageTitle"])
+    // ...mapGetters(["changeRedDark", "switchcolor(color)", "switchlang(to)"])
   },
   methods: {
     changeRedDark() {
@@ -234,13 +229,13 @@ language: "中文",
           break;
       }
     },
-    fetchMenu () {
+    fetchMenu() {
       // fetch menu from server
       // this.$http.get('menu').then(({data}) => this.$store.commit('setMenu', data))
     }
   },
-created () {
-    this.fetchMenu()
+  created() {
+    this.fetchMenu();
   }
 };
 </script>

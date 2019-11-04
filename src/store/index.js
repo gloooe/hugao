@@ -1,34 +1,34 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import account from './module/account'
-import menu from './module/permission'
-import pagestatus from './module/pagestatus'
-import menu from '@views/common/menu'
-Vue.use(Vuex)
+import Vue from "vue";
+import Vuex from "vuex";
+import account from "./module/account";
+import permission from "./module/permission";
+import pagestatus from "./module/pagestatus";
+// import menu from "@views/common/menu";
+Vue.use(Vuex);
 const store = new Vuex.Store({
-state: {
-    pageTitle: 'Home',
-    menu: menu,
+  state: {
+    pageTitle: "Home",
+    // menu: menu,
     user: {},
-light:true,
-language:'',
+    light: true,
+    language: "English",
     languages: ["中文", "English"],
-color:'',
-    colors: ["blue", "green", "purple", "red"]
+    color: "",
+    colors: ["blue", "green", "purple", "red"],
     token: null,
     message: {
       type: null,
       body: null
-    },
-},
-getters:{
+    }
+  },
+  getters: {
     changeRedDark() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       this.visibility = !this.visibility;
-return this.state.light=true
+      return (this.state.light = true);
     },
-    switchcolor(state,data) {
-      switch (state,data) {
+    switchcolor(state, data) {
+      switch ((state, data)) {
         case "blue":
           this.$vuetify.theme.themes.light.primary = "#3f51b5";
           break;
@@ -44,10 +44,10 @@ return this.state.light=true
         default:
           break;
       }
-state.color = data
+      state.color = data;
     },
-    switchlang(state,data) {
-      switch (state,data) {
+    switchlang(state, data) {
+      switch ((state, data)) {
         case "中文":
           this.language = "中文";
           this.$i18n.locale = "zh-CN"; //关键语句
@@ -59,36 +59,37 @@ state.color = data
         default:
           break;
       }
-state.language = data
-    }},
- mutations: {
-
-   setMenu (state, data) {
-      state.menu = data
-    },
-    setPageTitle (state, data) {
-      state.pageTitle = data
-    },
-    showMessage (state, type, body) {
-      state.message = { type, body }
+      state.language = data;
     }
   },
-actions: {
-
-    checkPageTitle ({commit, state}, path) {
-      for (let k in state.menu) {
-        if (state.menu[k].href === path) {
-          commit('setPageTitle', state.menu[k].title)
-          break
-        }
-      }
+  mutations: {
+    // setMenu(state, data) {
+    //   state.menu = data;
+    // },
+    setPageTitle(state, data) {
+      state.pageTitle = data;
+    },
+    showMessage(state, type, body) {
+      state.message = {
+        type,
+        body
+      };
     }
+  },
+  actions: {
+    // checkPageTitle({ commit, state }, path) {
+    //   for (let k in state.menu) {
+    //     if (state.menu[k].href === path) {
+    //       commit("setPageTitle", state.menu[k].title);
+    //       break;
+    //     }
+    //   }
+    // }
   },
   modules: {
     pagestatus,
-    account,
-    menu,
+    account
   }
-})
+});
 
-export default store
+export default store;
