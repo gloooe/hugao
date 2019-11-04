@@ -140,6 +140,7 @@
           />
         </v-avatar>
       </v-btn>
+
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
@@ -147,6 +148,7 @@
         </v-tabs>
       </template>
     </v-app-bar>
+
     <v-content>
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in 5" :key="item">
