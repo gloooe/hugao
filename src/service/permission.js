@@ -2,7 +2,7 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
-import { account, checkRule } from '@/common/tool'
+import { account, checkRule } from '@/utils/tool'
 
 const noRouter = ['/login']
 

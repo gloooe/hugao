@@ -1,5 +1,5 @@
 import * as types from '../mutation-types'
-import { account } from '@/common/tool'
+import { account } from '@/service/utils/tool'
 
 const state = {
   info: '',

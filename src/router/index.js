@@ -17,7 +17,7 @@ const routes = [
     // redirect: "/login",
     name: "login",
     component: function() {
-      return import("@/views/login.vue");
+      return import("@/components/login.vue");
     }
   },
   {
@@ -94,6 +94,22 @@ const routes = [
         path: "totop",
         component: function() {
           return import("../views/totop.vue");
+        }
+      }
+    ]
+  },
+  {
+    path: "/settings",
+    name: "settings",
+    component: function() {
+      return import("../views/settings/settings.vue");
+    },
+
+    children: [
+      {
+        path: "userlist",
+        component: function() {
+          return import("../components/user/index.vue");
         }
       }
     ]

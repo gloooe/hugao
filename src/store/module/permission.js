@@ -1,4 +1,4 @@
-import { checkRule, account, setData, getData } from '@/common/tool'
+import { checkRule, account, setData, getData } from '@/service/utils/tool'
 import {programa, permission} from '@/router/component'
 import { MENU } from '../mutation-types'
 
