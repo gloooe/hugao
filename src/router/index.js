@@ -114,6 +114,22 @@ const routes = [
       }
     ]
   }
+  // {
+  //   path: "/settings",
+  //   name: "settings",
+  //   component: function() {
+  //     return import("../views/Home2.vue");
+  //   },
+
+  //   children: [
+  //     {
+  //       path: "userlist",
+  //       component: function() {
+  //         return import("../components/user/index.vue");
+  //       }
+  //     }
+  //   ]
+  // }
 ];
 
 const router = new VueRouter({
