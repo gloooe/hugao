@@ -19,13 +19,9 @@ const store = new Vuex.Store({
     message: {
       type: null,
       body: null
-<<<<<<< HEAD
     }
   },
-  getters: {},
-=======
-    }
-  },
+
   getters: {
     changeRedDark() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
@@ -67,7 +63,6 @@ const store = new Vuex.Store({
       state.language = data;
     }
   },
->>>>>>> c4e3d6ad02c4401146c12e831d6cdf2d5e64de9f
   mutations: {
     // setMenu(state, data) {
     //   state.menu = data;

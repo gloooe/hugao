@@ -1,4 +1,4 @@
-import au from '@/common/auth'
+import au from '@/service/utils/auth'
 
 function load (component) {
   return () => import(`@/components/${component}.vue`)

@@ -1,3 +1,8 @@
+// import {g} from '@/common/request'
+
+// g('auth', {})
+
+
 import { checkAuth } from './tool'
 
 /**

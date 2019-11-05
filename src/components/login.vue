@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
-  <v-app id="login" @keydown.enter="handleSubmit">
-=======
   <v-app id="login">
->>>>>>> c4e3d6ad02c4401146c12e831d6cdf2d5e64de9f
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
@@ -69,7 +65,7 @@
 
 <script>
 import { mapState } from "vuex";
-import * as login from "@/api/login";
+import * as login from "@/service/login";
 export default {
   props: {
     source: String
@@ -102,11 +98,7 @@ export default {
             this.$router.push("/");
           })
           .finally(() => {
-<<<<<<< HEAD
             this.loading = false;
-=======
-            this.loading = true;
->>>>>>> c4e3d6ad02c4401146c12e831d6cdf2d5e64de9f
           });
       }
     },
