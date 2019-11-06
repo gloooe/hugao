@@ -9,7 +9,7 @@ const routes = [
     redirect: "/error",
     name: "error",
     component: function() {
-      return import("@/components/Error.vue");
+      return import("@/components/error/Error.vue");
     }
   },
   {
@@ -113,23 +113,23 @@ const routes = [
         }
       }
     ]
-  }
-  // {
-  //   path: "/settings",
-  //   name: "settings",
-  //   component: function() {
-  //     return import("../views/Home2.vue");
-  //   },
+  },
+  {
+    path: "/settings",
+    name: "settings",
+    component: function() {
+      return import("../views/Home2.vue");
+    },
 
-  //   children: [
-  //     {
-  //       path: "userlist",
-  //       component: function() {
-  //         return import("../components/user/index.vue");
-  //       }
-  //     }
-  //   ]
-  // }
+    children: [
+      {
+        path: "userlist",
+        component: function() {
+          return import("../components/user/index.vue");
+        }
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({
