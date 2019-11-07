@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <v-content style="padding-top:60px">
+=======
+   <v-content style="padding-top:60px">
+>>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
     <v-row style="margin-top:10px">
       <v-toolbar :extended="extended" flat dense>
         <v-toolbar-title>Title 或面包屑</v-toolbar-title>
@@ -27,16 +31,26 @@
         </template>
       </v-toolbar>
     </v-row>
+<<<<<<< HEAD
     <router-view />
   </v-content>
+=======
+       <router-view />
+    </v-content>
+>>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
 </template>
 
 <script>
 export default {
   components: {
     //切换组件的做法,也可以切换路由
+<<<<<<< HEAD
     // drawerList: () => import("../Filter"),
     // toolbarfilter: () => import("../Filter")
+=======
+    drawerList: () => import("../Filter"),
+    toolbarfilter: () => import("../Filter")
+>>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
   },
   //使用store获取
   props: {
@@ -56,10 +70,17 @@ export default {
       this.drawer = !this.drawer;
       //切换另一个drawerlist的内容,用路由或组件
     },
+<<<<<<< HEAD
     extendfilter() {
       this.filterenable = !filterenable;
       this.extended = true;
     }
+=======
+extendfilter() {
+this.filterenable = !filterenable;
+this.extended=true
+}
+>>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
   }
 };
 </script>

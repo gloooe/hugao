@@ -75,7 +75,11 @@
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
+<<<<<<< HEAD
           <v-tab v-for="item in detailtabs" :key="item" @click="router.push("item.url")">
+=======
+          <v-tab v-for="item in detailtabs" :key="item" :href="item.url">
+>>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
             {{ item.name }}
           </v-tab>
         </v-tabs>
