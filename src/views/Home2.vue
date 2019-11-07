@@ -66,6 +66,7 @@
       hide-on-scroll
       color="blue darken-3"
       dark
+      :extended="extended"
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
@@ -73,6 +74,9 @@
           $t("Google Contacts")
         }}</span>
       </v-toolbar-title>
+      <v-btn text @click="extended = false">link</v-btn>
+      <v-btn text @click="extended = false">link</v-btn>
+      <v-btn text @click="extended = true">link</v-btn>
       <v-text-field
         v-if="searchtextfield"
         flat
@@ -141,11 +145,22 @@
         </v-avatar>
       </v-btn>
 
-      <template v-slot:extension>
+      <template v-slot:extension v-if="extended">
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
-          <v-tab v-for="item in 5" :key="item"> tab {{ item }} </v-tab>
+          <v-tab v-for="item in 4" :key="item"> tab {{ item }} </v-tab>
         </v-tabs>
+        <v-btn-toggle color="primary" dense group>
+          <v-btn>
+            <v-icon>mdi-format-align-left</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-format-align-center</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-format-align-right</v-icon>
+          </v-btn>
+        </v-btn-toggle>
       </template>
     </v-app-bar>
 
@@ -172,9 +187,11 @@ export default {
   },
   data: () => ({
     tab: null,
+    tabtop: null,
     searchtextfield: false,
     drawer: null,
     visibility: false,
+    extended: false,
     language: "English",
     items: [
       { icon: "mdi-contacts", text: "Contacts", url: "/home2/project" },

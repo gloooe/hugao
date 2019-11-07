@@ -5,6 +5,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/testtab",
+
+    // name: "error",
+    component: function() {
+      return import("@/components/parent.vue");
+    }
+  },
+  {
     path: "/error",
     redirect: "/error",
     name: "error",
@@ -64,7 +72,15 @@ const routes = [
         path: "contract",
         component: function() {
           return import("../views/project");
-        }
+        },
+        children: [
+          {
+            path: "/",
+            component: function() {
+              return import("../views/table1");
+            }
+          }
+        ]
       },
       {
         path: "cards",

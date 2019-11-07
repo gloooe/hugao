@@ -2,47 +2,34 @@
   <div>
     <v-navigation-drawer v-model="drawer" clipped app style="margin-top:10px">
       <!-- //可以作为一个路由,也可以是组件,不知道那种方法好用(类型有5-8种) -->
-      <v-card class="mx-auto" max-width="500">
-        <v-sheet class="pa-4 primary lighten-2">
-          <v-text-field
-            v-model="search"
-            label="Search Company Directory"
-            dark
-            flat
-            solo-inverted
-            hide-details
-            clearable
-            clear-icon="mdi-close-circle-outline"
-          ></v-text-field>
-          <v-checkbox
-            v-model="caseSensitive"
-            dark
-            hide-details
-            label="Case sensitive search"
-          ></v-checkbox>
-        </v-sheet>
-        <v-card-text>
-          <v-treeview
-            :items="items"
-            :search="search"
-            :filter="filter"
-            :open.sync="open"
-          >
-            <template v-slot:prepend="{ item }">
-              <v-icon
-                v-if="item.children"
-                v-text="
-                  `mdi-${item.id === 1 ? 'home-variant' : 'folder-network'}`
-                "
-              ></v-icon>
-            </template>
-          </v-treeview>
-        </v-card-text>
-      </v-card>
-    </v-navigation-drawer>
+      <v-text-field
+        label="Search Company Directory"
+        flat
+        solo
+        hide-details
+        clearable
+        clear-icon="mdi-close-circle-outline"
+      ></v-text-field>
+      <v-checkbox hide-details label="Case sensitive search"></v-checkbox>
 
-    <v-content style="padding-top:60px">
-      <v-row style="margin-top:10px">
+      <v-treeview
+        :items="items"
+        :search="search"
+        :filter="filter"
+        :open.sync="open"
+        activatable
+        dense
+      >
+        <template v-slot:prepend="{ item }">
+          <v-icon
+            v-if="item.children"
+            v-text="`mdi-${item.id === 1 ? 'home-variant' : 'folder-network'}`"
+          ></v-icon>
+        </template>
+      </v-treeview>
+    </v-navigation-drawer>
+    <v-content>
+      <v-row>
         <v-toolbar :extended="extended" flat dense>
           <v-toolbar-title>Title 或面包屑</v-toolbar-title>
 

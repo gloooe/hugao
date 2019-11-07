@@ -71,18 +71,28 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
         <span class="hidden-sm-and-down">{{ pagetitle }}</span>
       </v-toolbar-title>
+      <v-btn text @click="extended = false">生产计划</v-btn>
+      <v-btn text @click="extended = false">任务中心</v-btn>
+      <v-btn text @click="extended = true">生产看板</v-btn>
       <headbarright />
-      <template v-slot:extension>
+      <template v-slot:extension v-if="extended">
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
-<<<<<<< HEAD
           <v-tab v-for="item in detailtabs" :key="item" @click="router.push("item.url")">
-=======
-          <v-tab v-for="item in detailtabs" :key="item" :href="item.url">
->>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
             {{ item.name }}
           </v-tab>
         </v-tabs>
+          <v-btn-toggle color="primary" dense group>
+          <v-btn>
+            <v-icon>mdi-format-align-left</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-format-align-center</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-format-align-right</v-icon>
+          </v-btn>
+        </v-btn-toggle>
       </template>
     </v-app-bar>
   </v-app>
@@ -103,7 +113,9 @@ export default {
     pagetitle: "",
     drawerlist: [],
     tabname: [],
-    tab: null,
+extended:false,
+ 
+       tab: null,
     detailtabs: [
       {
         name: "property", //客户输入的名称

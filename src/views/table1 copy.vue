@@ -1,7 +1,8 @@
 <template>
   <v-container fluid>
+    <toolbar />
     <v-row align="center" justify="center">
-      <v-card width="100%">
+      <v-card width="100%" >
         <v-card-title>
           <v-text-field
             v-model="search"
@@ -22,9 +23,13 @@
 </template>
 
 <script>
+import toolbar from './common/toolbar';
+
 export default {
+  components:{toolbar},
   data() {
     return {
+
       search: "",
       headers: [
         {
