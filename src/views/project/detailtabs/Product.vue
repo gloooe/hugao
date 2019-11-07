@@ -1,31 +1,27 @@
 <template>
-<body mc-layout="hidden-nav">
-  <div class="mc-navigation">...</div>
-  <div class="mc-header">...hiddenNavigationSample()</div>
-  <div class="mc-content">...</div>
-  <div class="mc-floating">...</div>
-</body>
+  <div>产品图纸</div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
-    return {     
-// 项目子组，来自于项目信息， 也可以新建和删除
+    return {
+      // 项目子组，来自于项目信息， 也可以新建和删除
       productGroup: [
         { groupID: "", groupName: "" },
         { groupID: "", groupName: "" }
       ],
-       // 新建零件的属性
-      productAttribute: [// 来自于store， 以下只是举例
+      // 新建零件的属性
+      productAttribute: [
+        // 来自于store， 以下只是举例
         {
           partID: "", //零件内部ID
           partCode: "", //零件编号
           partName: "新建零件", //零件名称
           partQuantity: "", //零件数量
           partUnit: "", //零件数量单位
-          partMaterial: "", //零件材料
+          partMaterial: "" //零件材料
           // partModifyTime: "", //零件最后修改时间
           // partCreateTime: "" //零件创建时间
         }
@@ -42,5 +38,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

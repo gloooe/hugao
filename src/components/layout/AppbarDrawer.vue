@@ -80,13 +80,13 @@ import headbarright from "./HeadBarRight";
 export default {
   components: { headbarright },
   props: {
-    list: Object,
+    list: Array,
     title: String
   },
   data: () => ({
     drawer: null,
     pageTitle: "",
-    drawerlist
+    drawerlist: []
   }),
   methods: {},
   computed: {

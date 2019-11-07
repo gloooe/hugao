@@ -29,5 +29,14 @@ export default {
   "Page Not Found.": "页面不存在",
   "An admin dashboard based on Vuetify": "基于Vuetify的后台管理UI框架",
   "Google Contacts": "谷歌通讯录",
-  Enter: "进入"
+  Enter: "进入",
+  property: "属性",
+  contract: "合同",
+  document: "文档",
+  issuelist: "属性",
+  product: "属性",
+  providing: "属性",
+  requirelist: "属性",
+  schedule: "属性",
+  track: "属性"
 };

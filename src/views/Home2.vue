@@ -149,7 +149,9 @@
       </template>
     </v-app-bar>
 
-    <v-content>
+    <router-view />
+
+    <!-- <v-content>
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in 5" :key="item">
           <router-view />
@@ -158,7 +160,7 @@
           </v-card>
         </v-tab-item>
       </v-tabs-items>
-    </v-content>
+    </v-content> -->
   </v-app>
 </template>
 

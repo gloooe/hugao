@@ -4,10 +4,11 @@ import account from "./module/account";
 import permission from "./module/permission";
 import pagestatus from "./module/pagestatus";
 import menu from "@/views/settings/menu";
+import project from "./module/project";
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    pageTitle: "Home",
+    pagetitle: "Home",
     menu: menu,
     user: {},
     light: true,
@@ -24,12 +25,12 @@ const store = new Vuex.Store({
 
   getters: {},
   mutations: {
-    setMenu(state, data) {
-      state.menu = data;
-    },
-    setPageTitle(state, data) {
-      state.pageTitle = data;
-    },
+    // setMenu(state, data) {
+    //   state.menu = data;
+    // },
+    // setPageTitle(state, data) {
+    //   state.pageTitle = data;
+    // },
     showMessage(state, type, body) {
       state.message = {
         type,
@@ -38,18 +39,19 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    checkPageTitle({ commit, state }, path) {
-      for (let k in state.menu) {
-        if (state.menu[k].href === path) {
-          commit("setPageTitle", state.menu[k].text);
-          break;
-        }
-      }
-    }
+    // checkPageTitle({ commit, state }, path) {
+    //   for (let k in state.menu) {
+    //     if (state.menu[k].href === path) {
+    //       commit("setPageTitle", state.menu[k].text);
+    //       break;
+    //     }
+    //   }
+    // }
   },
   modules: {
     pagestatus,
-    account
+    account,
+    project
   }
 });
 
