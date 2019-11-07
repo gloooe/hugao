@@ -1,6 +1,6 @@
 <template>
-  <div>
- <v-text-field
+  <v-row justify="end">
+    <v-text-field
       v-if="searchtextfield"
       flat
       solo-inverted
@@ -67,7 +67,7 @@
         />
       </v-avatar>
     </v-btn>
-  </div>
+  </v-row>
 </template>
 
 <script>
@@ -77,18 +77,19 @@ export default {
     parentToChild: String
   },
   data: () => ({
-     searchtextfield:false,
+    searchtextfield: false,
     language: "English",
+    visibility: false
   }),
   computed: {
-        ...mapState(["languages", "colors", "menu", "pageTitle"])
+    ...mapState(["languages", "colors", "menu", "pageTitle"])
     // ...mapGetters(["changeRedDark", "switchcolor(color)", "switchlang(to)"])
   },
   methods: {
     fun() {
       this.$emit("childfn", this.msg, this.value2, this.value3, true);
     },
-   changeRedDark() {
+    changeRedDark() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       this.visibility = !this.visibility;
     },

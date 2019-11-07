@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-
+import project from "./modules/project";
 Vue.use(VueRouter);
 
 const routes = [
@@ -30,13 +30,7 @@ const routes = [
       return import(/* webpackChunkName: "about" */ "../views/About.vue");
     }
   },
-  {
-    path: "/",
-    name: "main",
-    component: function() {
-      return import("../views/Main.vue");
-    }
-  },
+  project,
   {
     path: "/home3",
     name: "home3",
@@ -100,7 +94,7 @@ const routes = [
   },
   {
     path: "/settings",
-    name: "settings",
+    // name: "settings",
     component: function() {
       return import("../views/settings/settings.vue");
     },
