@@ -1,50 +1,7 @@
 <template>
   <v-app app>
-    <headtoolbar :list="menu" :title="pageTitle" :tablist="detailtabs" />
-    <!-- 在headbar上slot一个面包屑  -->
-    <v-content style="padding-top:60px">
-      <v-tabs-items>
-        <v-tab-item>
-          <router-view />
-        </v-tab-item>
-        <!-- <v-tab-item :value="'tab-' + i">
-          需求列表,requirelist
-          <requirelist />
-        </v-tab-item>
-        <v-tab-item>
-          项目属性,property
-          <property />
-        </v-tab-item>
-        <v-tab-item>
-          合同管理
-          <contract />
-        </v-tab-item>
-        <v-tab-item>
-          文档管理
-          <document />
-        </v-tab-item>
-        <v-tab-item>
-          问题跟踪记录
-          <issuelist />
-        </v-tab-item>
-        <v-tab-item>
-          客户提供件
-          <providing />
-        </v-tab-item>
-        <v-tab-item>
-          产品文件和图纸
-          <product />
-        </v-tab-item>
-        <v-tab-item>
-          项目计划
-          <schedule />
-        </v-tab-item>
-        <v-tab-item>
-          项目跟踪
-          <trackpjt />
-        </v-tab-item> -->
-      </v-tabs-items>
-    </v-content>
+    <headtoolbar :list="menu" :tablist="detailtabs" />
+    <router-view />
   </v-app>
 </template>
 
@@ -76,7 +33,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["message", "menu", "pagetitle"]),
+    ...mapState(["menu"]),
     ...mapState(
       { detailtabs: state => state.project.detailtabname }
       // { menu: state => state.menu }

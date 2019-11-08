@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <v-navigation-drawer
       app
       v-model="drawer"
@@ -67,7 +67,7 @@
       elevate-on-scroll
       hide-on-scroll
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+      <v-toolbar-title class="ml-0 pl-4">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
         <span class="hidden-sm-and-down">{{ pagetitle }}</span>
       </v-toolbar-title>
@@ -75,17 +75,13 @@
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
-<<<<<<< HEAD
-          <v-tab v-for="item in detailtabs" :key="item" @click="router.push("item.url")">
-=======
-          <v-tab v-for="item in detailtabs" :key="item" :href="item.url">
->>>>>>> b305287682dba59ed4f3837980aa5e6616aa08e6
+          <v-tab v-for="item in detailtabs" :key="item.name">
             {{ item.name }}
           </v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
-  </v-app>
+  </div>
 </template>
 
 <script>
