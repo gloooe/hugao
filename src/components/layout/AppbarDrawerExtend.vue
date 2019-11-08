@@ -76,6 +76,8 @@
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
           <v-tab v-for="item in detailtabs" :key="item.name">
+            <v-tab v-for="item in detailtabs" :key="item"
+            @click="router.push("item.url")">
             {{ item.name }}
           </v-tab>
         </v-tabs>
