@@ -79,7 +79,7 @@
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
           <v-tab v-for="item in detailtabs" :key="item" @click="router.push("item.url")">
-            {{ item.name }}
+            {{ item }}
           </v-tab>
         </v-tabs>
           <v-btn-toggle color="primary" dense group>

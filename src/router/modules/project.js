@@ -1,5 +1,5 @@
 const newproject = {
-  path: "/project",
+  path: "/",
   // name: 'project',
   meta: {
     role: ["admin", "projectmanager"], //页面需要的权限
@@ -11,6 +11,17 @@ const newproject = {
   children: [
     {
       path: "/",
+      // name: 'new',
+      meta: {
+        role: ["admin", "projectmanager"], //页面需要的权限
+        title: "properity", //属性
+        icon: "mdi-name", //the icon show in the sidebar,
+        noCache: true // if fasle ,the page will no be cached(default is false)
+      },
+      component: resolve => require(["@/views/project/ListIndex.vue"], resolve)
+    },
+    {
+      path: "/new",
       // name: 'new',
       meta: {
         role: ["admin", "projectmanager"], //页面需要的权限

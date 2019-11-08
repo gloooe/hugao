@@ -1,6 +1,7 @@
 <template>
   <div>
     <MyDemo ref="mydemo" :parentToChild="message" @childfn="parentfn" />
+    <router-link to="/new">new</router-link>
   </div>
 </template>
 
@@ -18,8 +19,14 @@ export default {
     message: ""
   }),
   computed: {
-    ...mapState(["menu", "pageTitle"])
+    ...mapState(["menu", "pageTitle"]),
     // ...mapGetters(["changeRedDark", "switchcolor(color)", "switchlang(to)"])
+    ...mapState(["menu"]),
+    ...mapState(
+      { detailtabs: state => state.project.detailtabname }
+      // { menu: state => state.menu }
+      // { pageTitle: state => state.pageTitle }
+    )
   },
   methods: {
     parentfn() {

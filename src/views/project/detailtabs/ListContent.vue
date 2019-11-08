@@ -1,71 +1,284 @@
 <template>
-  <div>
-    <v-navigation-drawer v-model="drawer" clipped app style="margin-top:10px">
-      <!-- //可以作为一个路由,也可以是组件,不知道那种方法好用(类型有5-8种) -->
-      <drawerList />
-    </v-navigation-drawer>
-    <v-content style="padding-top:60px">
-      <v-row style="margin-top:10px">
-        <v-toolbar :extended="extended" flat dense>
-          <v-toolbar-title>Title 或面包屑</v-toolbar-title>
+  <v-container style="margin-top:65px">
+    <v-data-table
+      :headers="headers"
+      :items="desserts"
+      sort-by="calories"
+      class="elevation-1"
+      :search="search"
+      show-select
+      :dense="dense"
+      show-expand
+      :single-expand="singleExpand"
+      :expanded.sync="expanded"
+      item-key="name"
+      :sort-by="['calories', 'fat']"
+      :sort-desc="[false, true]"
+      multi-sort
+    >
+      <!-- group-by="category"
+        show-group-by -->
+      <template v-slot:top>
+        <v-toolbar flat color="white" :extended="extended" dense>
+          <v-dialog v-model="dialog" max-width="500px">
+            <template v-slot:activator="{ on }">
+              <v-btn color="primary" dark class="mb-2" v-on="on">New</v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">{{ formTitle }}</span>
+              </v-card-title>
 
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.name"
+                        label="Dessert name"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.calories"
+                        label="Calories"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.fat"
+                        label="Fat (g)"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.carbs"
+                        label="Carbs (g)"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.protein"
+                        label="Protein (g)"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <!-- <v-toolbar-title>My CRUD</v-toolbar-title>
+            <v-divider class="mx-4" inset vertical></v-divider> -->
           <v-spacer></v-spacer>
-          <v-toolbar-items class="hidden-sm-and-down">
-            <v-btn text @click="btnimport">import</v-btn>
-            <v-btn text @click="btnplan">process</v-btn>
-            <v-btn text>Link 3</v-btn>
-          </v-toolbar-items>
 
-          <template v-if="$vuetify.breakpoint.smAndUp">
-            <v-btn icon>
-              <v-icon>mdi-delete-circle</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-plus-circle</v-icon>
-            </v-btn>
-            <v-btn icon @click="extendfilter">
-              <v-icon>mdi-filter</v-icon>
-            </v-btn>
-          </template>
-          <template v-if="$vuetify.breakpoint.smAndUp">
-            <toolbarfilter v-if="filterenable" />
+          <v-btn text @click="singleExpand = !singleExpand">Expand</v-btn>
+          <v-btn text @click="dense = !dense">dense</v-btn>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+          <v-btn icon @click="extendfilter">
+            <v-icon>mdi-filter</v-icon>
+          </v-btn>
+          <template v-slot:extension v-if="filterenable">
+            <toolbarfilter />
           </template>
         </v-toolbar>
-      </v-row>
-      这是一个table
-      <router-view />
-    </v-content>
-  </div>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-icon small class="mr-2" @click="editItem(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon small @click="deleteItem(item)">
+          mdi-delete
+        </v-icon>
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize">Reset</v-btn>
+      </template>
+      <template v-slot:expanded-item="{ headers }">
+        <td :colspan="headers.length">Peek-a-boo!</td>
+      </template>
+    </v-data-table>
+  </v-container>
 </template>
-
 <script>
 export default {
   components: {
     //切换组件的做法,也可以切换路由
-   // drawerList: () => import("./Filter"),
+    // drawerList: () => import("./Filter"),
     toolbarfilter: () => import("./ListFilter")
   },
-  //使用store获取
-  props: {
-    parentToChild: String
-  },
   data: () => ({
-    extended: false,
-    drawer: false,
-    filterenable: false
-  }),
-  methods: {
-    btnimport() {
-      this.drawer = !this.drawer;
-      //切换获取drawerList的内容,用路由或组件
+    dense: false,
+    search: "",
+    dialog: false,
+    expanded: [],
+    singleExpand: true,
+    filterenable: false,
+    headers: [
+      {
+        text: "Dessert",
+        align: "left",
+        sortable: false,
+        value: "name"
+      },
+      { text: "Calories", value: "calories" },
+      { text: "Fat (g)", value: "fat" },
+      { text: "Carbs (g)", value: "carbs" },
+      { text: "category", value: "protein" },
+      { text: "Actions", value: "action", sortable: false }
+    ],
+    desserts: [],
+    editedIndex: -1,
+    editedItem: {
+      name: "",
+      calories: 0,
+      fat: 0,
+      carbs: 0,
+      protein: 0
     },
-    btnplan() {
-      this.drawer = !this.drawer;
-      //切换另一个drawerlist的内容,用路由或组件
+    defaultItem: {
+      name: "",
+      calories: 0,
+      fat: 0,
+      carbs: 0,
+      protein: 0
+    }
+  }),
+
+  computed: {
+    formTitle() {
+      return this.editedIndex === -1 ? "New Item" : "Edit Item";
+    }
+  },
+
+  watch: {
+    dialog(val) {
+      val || this.close();
+    }
+  },
+
+  created() {
+    this.initialize();
+  },
+
+  methods: {
+    initialize() {
+      this.desserts = [
+        {
+          name: "Frozen Yogurt",
+          calories: 159,
+          fat: 6.0,
+          carbs: 24,
+          protein: 4.0
+        },
+        {
+          name: "Ice cream sandwich",
+          calories: 237,
+          fat: 9.0,
+          carbs: 37,
+          protein: 4.3
+        },
+        {
+          name: "Eclair",
+          calories: 262,
+          fat: 16.0,
+          carbs: 23,
+          protein: 6.0
+        },
+        {
+          name: "Cupcake",
+          calories: 305,
+          fat: 3.7,
+          carbs: 67,
+          protein: 4.3
+        },
+        {
+          name: "Gingerbread",
+          calories: 356,
+          fat: 16.0,
+          carbs: 49,
+          protein: 3.9
+        },
+        {
+          name: "Jelly bean",
+          calories: 375,
+          fat: 0.0,
+          carbs: 94,
+          protein: 0.0
+        },
+        {
+          name: "Lollipop",
+          calories: 392,
+          fat: 0.2,
+          carbs: 98,
+          protein: 0
+        },
+        {
+          name: "Honeycomb",
+          calories: 408,
+          fat: 3.2,
+          carbs: 87,
+          protein: 6.5
+        },
+        {
+          name: "Donut",
+          calories: 452,
+          fat: 25.0,
+          carbs: 51,
+          protein: 4.9
+        },
+        {
+          name: "KitKat",
+          calories: 518,
+          fat: 26.0,
+          carbs: 65,
+          protein: 7
+        }
+      ];
+    },
+
+    editItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+
+    deleteItem(item) {
+      const index = this.desserts.indexOf(item);
+      confirm("Are you sure you want to delete this item?") &&
+        this.desserts.splice(index, 1);
+    },
+
+    close() {
+      this.dialog = false;
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      }, 300);
+    },
+
+    save() {
+      if (this.editedIndex > -1) {
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+      } else {
+        this.desserts.push(this.editedItem);
+      }
+      this.close();
     },
     extendfilter() {
-      this.filterenable = !filterenable;
-      this.extended = true;
+      this.filterenable = !this.filterenable;
+      this.extended = !this.extended;
     }
   }
 };

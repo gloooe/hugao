@@ -1,10 +1,8 @@
 <template>
   <v-app id="appbardrawer">
     <headtoolbar :list="menu" :title="pageTitle" />
-    <v-content style="padding-top:60px">
-      <list />
-      <router-view />
-    </v-content>
+    <list />
+    <!-- <router-view /> -->
   </v-app>
 </template>
 
@@ -13,7 +11,7 @@ import { mapState, mapGetters } from "vuex";
 export default {
   components: {
     headtoolbar: () => import("@/components/layout/AppbarDrawer"),
-    list: () => import("./ListContent")
+    list: () => import("./detailtabs/ListContent")
   },
   data: () => ({}),
   methods: {

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import project from "./modules/project";
+import newproject from "./modules/project";
 Vue.use(VueRouter);
 
 const routes = [
@@ -38,7 +38,7 @@ const routes = [
       return import(/* webpackChunkName: "about" */ "../views/About.vue");
     }
   },
-  project,
+  newproject,
   {
     path: "/home3",
     name: "home3",

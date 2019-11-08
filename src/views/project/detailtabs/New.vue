@@ -1,40 +1,51 @@
 <template>
   <v-content>
-    <v-toolbar flat v-if="toolbar">
-      <v-toolbar-items>
-        <v-btn text v-show="!importextend" @click="startimport">import</v-btn>
-        <v-btn text v-show="importextend">下载模板</v-btn>
-      </v-toolbar-items>
-      <v-spacer></v-spacer>
-      <template v-if="$vuetify.breakpoint.smAndUp">
-        
-        <v-btn text v-show="importextend">save</v-btn>
-        <v-btn icon @click="closeimport" v-show="importextend">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </template>
-    </v-toolbar>
-    <v-card v-if="importextend" class="mb-12" color="grey lighten-1" height="600px">excel plus</v-card>
-    <v-row gutters v-if="templatelist" style="padding:10px,10px,10px,10px">
-      <v-col v-for="k in 10" :key="k" gutters>
-        <v-card>
-          <v-card-text>
-            <div>templatename</div>
+    <v-container>
+      <v-toolbar flat v-if="toolbar">
+        <v-toolbar-items>
+          <v-toolbar-title>new</v-toolbar-title>
+          <v-btn text v-show="importextend">下载模板</v-btn>
+        </v-toolbar-items>
+        <v-spacer></v-spacer>
+        <template v-if="$vuetify.breakpoint.smAndUp">
+          <v-btn color="primary" v-show="!importextend" @click="startimport"
+            >import</v-btn
+          >
+          <v-btn text v-show="importextend">save</v-btn>
+          <v-btn icon @click="closeimport" v-show="importextend">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </template>
+      </v-toolbar>
+      <v-card
+        v-if="importextend"
+        class="mb-12"
+        color="grey lighten-1"
+        height="600px"
+        >excel plus</v-card
+      >
+      <v-row gutters v-if="templatelist" style="padding:10px,10px,10px,10px">
+        <v-col v-for="k in 10" :key="k" gutters>
+          <v-card>
+            <v-card-text>
+              <div>templatename</div>
 
-            <div class="text--primary">well meaning and kindly.</div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">edit</v-btn>
-            <v-btn text color="deep-purple accent-4" @click="selectitem">select</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
+              <div class="text--primary">well meaning and kindly.</div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">edit</v-btn>
+              <v-btn text color="deep-purple accent-4" @click="selectitem"
+                >select</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
 
-    <!-- 引用插件，并且启动appbar上的扩展条 -->
+      <!-- 引用插件，并且启动appbar上的扩展条 -->
 
-    <property v-if="iputextend" />
-            <!-- <v-tab-item :value="'tab-' + i">
+      <property v-if="iputextend" />
+      <!-- <v-tab-item :value="'tab-' + i">
           需求列表,requirelist
           <requirelist />
         </v-tab-item>
@@ -70,6 +81,7 @@
           项目跟踪
           <trackpjt />
         </v-tab-item> -->
+    </v-container>
   </v-content>
 </template>
 
@@ -119,7 +131,8 @@ export default {
       this.templatelist = false;
       this.importextend = false;
       this.toolbar = false;
-      //启动appbar上的扩展条this.$root.e
+      this.$store.commit("openExtend");
+      //启动appbar上的扩展条this.$root.ethis.$store
     },
     parentfn() {
       //从子组件获取到的数据

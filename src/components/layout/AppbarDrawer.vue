@@ -4,6 +4,7 @@
       app
       v-model="drawer"
       :clipped="$vuetify.breakpoint.lgAndUp"
+      temporary
     >
       <v-list dense>
         <template v-for="item in drawerlist">
@@ -63,40 +64,50 @@
       app
       color="blue darken-3"
       dark
-      hideOnScroll
+      elevate-on-scroll
+      hide-on-scroll
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+      <v-toolbar-title class="ml-0 pl-4">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <span class="hidden-sm-and-down">{{ $t("pageTitle") }}</span>
+        <span class="hidden-sm-and-down">{{ pagetitle }}</span>
       </v-toolbar-title>
       <headbarright />
+      <template v-slot:extension v-if="extended">
+        <v-tabs v-model="tab" align-with-title background-color="transparent">
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+          <v-tab v-for="item in tabname" :key="item">
+            {{ item }}
+          </v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
   </div>
 </template>
 
 <script>
-//import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 import headbarright from "./HeadBarRight";
 export default {
   components: { headbarright },
   props: {
     list: Array,
-    title: String
+    title: String,
+    tablist: Array
   },
   data: () => ({
     drawer: null,
-    pageTitle: "",
-    drawerlist: []
+    pagetitle: "Home",
+    drawerlist: [],
+    tabname: [],
+    tab: null
   }),
   methods: {},
   computed: {
-    // ...mapState(["pagetitle", ]),
-    // ...mapGetters(["getdrawershow", "getdrawerposition"])
+    ...mapState({ extended: state => state.project.extended })
   },
   created() {
-    // fetch menu from server
-    // this.$http.get('menu').then(({data}) => this.$store.commit('setMenu', data))
-    this.pageTitle = this.title;
+    this.tabname = this.tablist;
+    this.pagetitle = this.title;
     this.drawerlist = this.list;
   }
 };

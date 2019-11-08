@@ -72,13 +72,11 @@
         <span class="hidden-sm-and-down">{{ pagetitle }}</span>
       </v-toolbar-title>
       <headbarright />
-      <template v-slot:extension>
+      <template v-slot:extension v-if="extended">
         <v-tabs v-model="tab" align-with-title background-color="transparent">
           <v-tabs-slider color="yellow"></v-tabs-slider>
-          <v-tab v-for="item in detailtabs" :key="item.name">
-            <v-tab v-for="item in detailtabs" :key="item"
-            @click="router.push("item.url")">
-            {{ item.name }}
+          <v-tab v-for="item in tabname" :key="item">
+            {{ item }}
           </v-tab>
         </v-tabs>
       </template>
@@ -87,7 +85,7 @@
 </template>
 
 <script>
-//import { mapState } from "vuex";
+import { mapState } from "vuex";
 import headbarright from "./HeadBarRight";
 export default {
   components: { headbarright },
@@ -98,69 +96,15 @@ export default {
   },
   data: () => ({
     drawer: null,
-    pagetitle: "",
+    pagetitle: "Home",
     drawerlist: [],
     tabname: [],
-    tab: null,
-    detailtabs: [
-      {
-        name: "property", //客户输入的名称
-        url: "/project/property", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "requirelist", //客户输入的名称
-        url: "/project/requirelist", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "contract", //客户输入的名称
-        url: "/project/contract", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "document", //客户输入的名称
-        url: "/project/document", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "product", //客户输入的名称
-        url: "/project/product", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "issuelist", //客户输入的名称
-        url: "/project/issuelist", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "providing", //客户输入的名称
-        url: "/project/providing", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "schedule", //客户输入的名称
-        url: "/project/schedule", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      },
-      {
-        name: "track", //客户输入的名称
-        url: "/project/track", //系统自动生成的标识，用户不可见
-        icon: "P01", //客户输入的类型代码
-        status: true
-      }
-    ]
+    tab: null
   }),
   methods: {},
-  computed: {},
+  computed: {
+    ...mapState({ extended: state => state.project.extended })
+  },
   created() {
     this.tabname = this.tablist;
     this.pagetitle = this.title;

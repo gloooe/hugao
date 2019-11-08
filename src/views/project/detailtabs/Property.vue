@@ -20,8 +20,8 @@
         <v-toolbar-items> </v-toolbar-items>
         <v-spacer></v-spacer>
         <template v-if="$vuetify.breakpoint.smAndUp">
-          <v-btn text>save</v-btn>
-          <v-btn icon>
+          <v-btn text >save</v-btn>
+          <v-btn icon @click="$router.push('/')">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </template>

@@ -1,6 +1,6 @@
 <template>
   <v-app app>
-    <headtoolbar :list="menu" :tablist="detailtabs" />
+    <headtoolbar :list="menu" :tablist="detailtabs" :title="pagetitle" />
     <router-view />
   </v-app>
 </template>
@@ -35,7 +35,8 @@ export default {
   computed: {
     ...mapState(["menu"]),
     ...mapState(
-      { detailtabs: state => state.project.detailtabname }
+      { detailtabs: state => state.project.detailtabname },
+      { pagetitle: state => state.project.title }
       // { menu: state => state.menu }
       // { pageTitle: state => state.pageTitle }
     )

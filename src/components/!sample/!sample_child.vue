@@ -3,6 +3,7 @@
     <v-btn @click="fun('data')" />
     <!-- 来自于父亲的数值 -->
     {{ msg }}
+    <router-link to="/new">new</router-link>
   </div>
 </template>
 

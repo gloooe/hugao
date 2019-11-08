@@ -1,4 +1,6 @@
 const state = {
+  extended: false,
+  title: "project",
   detailtabname: [
     "property",
     "contract",
@@ -241,18 +243,24 @@ const getters = {
   //   // return (state.detailtabname = tabname);
   // }
 };
+const mutations = {
+  openExtend(state) {
+    state.extended = true;
+  }
+};
 export default {
   state,
   getters, //在使用页面获取数据
-  mutations: {
-    getTabName(state) {
-      let tabname = [];
-      for (let index = 0; index < detailtabs.length; index++) {
-        tabname.push = detailtabs[name];
-      }
-      console.log(tabname);
-      return (state.detailtabname = tabname);
-    }
-  }, //在基础页面修改后的数据在次存入后台
+  mutations,
+  // getTabName(state) {
+  //   let tabname = [];
+  //   for (let index = 0; index < detailtabs.length; index++) {
+  //     tabname.push = detailtabs[name];
+  //   }
+  //   console.log(tabname);
+  //   return (state.detailtabname = tabname);
+  // }
+
+  //在基础页面修改后的数据在次存入后台
   actions: {} //在基础页面修改后的数据在次存入后台
 };
